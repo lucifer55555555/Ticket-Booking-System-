@@ -1,0 +1,25 @@
+{% extends 'booking/base.html' %}
+{% block content %}
+<h2>Admin Dashboard</h2>
+<p><a href="{% url 'add_show' %}">Add New Show</a></p>
+
+<table border="1">
+  <tr>
+    <th>Title</th>
+    <th>Date</th>
+    <th>Seats</th>
+    <th>Actions</th>
+  </tr>
+  {% for show in shows %}
+  <tr>
+    <td>{{ show.title }}</td>
+    <td>{{ show.date }}</td>
+    <td>{{ show.available_seats }}</td>
+    <td>
+      <a href="{% url 'edit_show' show.id %}">Edit</a> |
+      <a href="{% url 'delete_show' show.id %}">Delete</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

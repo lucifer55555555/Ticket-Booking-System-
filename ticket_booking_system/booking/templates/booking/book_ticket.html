@@ -1,0 +1,15 @@
+{% extends 'booking/base.html' %}
+{% block content %}
+<h2>Book Ticket for: {{ show.title }}</h2>
+<p>{{ show.description }}</p>
+<p>Date: {{ show.date }}</p>
+<p>Available Seats: {{ show.available_seats }}</p>
+
+<form method="post">
+  {% csrf_token %}
+  <label>Seats:</label><input type="number" name="seats" min="1" max="{{ show.available_seats }}" required><br>
+  <button type="submit">Book</button>
+</form>
+
+{% if error %}<p style="color:red;">{{ error }}</p>{% endif %}
+{% endblock %}

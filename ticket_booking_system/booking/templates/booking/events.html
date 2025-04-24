@@ -1,0 +1,14 @@
+{% extends 'booking/base.html' %}
+{% block content %}
+<h2>Available Shows</h2>
+<ul>
+  {% for show in shows %}
+    <li>
+      <strong>{{ show.title }}</strong> - {{ show.date }} - Seats: {{ show.available_seats }}
+      <a href="{% url 'book_ticket' show.id %}">Book Now</a>
+    </li>
+  {% empty %}
+    <li>No shows available</li>
+  {% endfor %}
+</ul>
+{% endblock %}
